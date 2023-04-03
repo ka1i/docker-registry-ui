@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# user wide ignore
+components.d.ts
+pnpm-lock.yaml

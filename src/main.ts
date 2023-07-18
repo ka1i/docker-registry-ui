@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 
 import App from '/@/App.vue'
+import { setupStore } from '/@/stores'
 import router, { setupRouter } from '/@/router'
 
 import '/@/assets/styles/tailwind.css'
@@ -8,6 +9,8 @@ import '/@/assets/styles/tailwind.css'
 async function bootstrap() {
     const app = createApp(App)
 
+    // 挂载状态管理
+    setupStore(app)
     // 挂载路由
     setupRouter(app)
 

@@ -11,10 +11,13 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { wrapperEnv } from './build/utils';
 
 import pkg from './package.json';
+
+import dayjs from 'dayjs'
 import { execSync } from 'child_process';
-const { name, license, version, dependencies, devDependencies } = pkg;
+const { name, author, license, version, repository, description, dependencies, devDependencies } = pkg;
 const __APP_INFO__ = {
-  pkg: { name, license, version, dependencies, devDependencies },
+  lastBuildTime: dayjs().format('YYYY/MM/DD HH:mm:ss'),
+  pkg: { name, author, license, version, repository, description, dependencies, devDependencies },
   gitTags: execSync('echo $(git rev-parse --short HEAD)').toString().trim(),
 };
 
@@ -27,6 +30,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const { VITE_PORT } = viteEnv;
 
   return {
+    envPrefix: "vv_",
     plugins: [
       vue(),
       Components({
@@ -61,5 +65,10 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     define: {
       __APP_INFO__: JSON.stringify(__APP_INFO__),
     },
+    css: {
+      preprocessorOptions: {
+        scss: {}
+      }
+    }
   }
 })

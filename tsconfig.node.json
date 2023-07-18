@@ -14,5 +14,6 @@
     "vite.config.ts",
     "postcss.config.*",
     "tailwind.config.*",
+    "types/*.d.ts",
   ]
 }
